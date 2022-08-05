@@ -1,0 +1,93 @@
+
+SQL QUERY:
+#SELECT ALL
+SELECT * FROM CITY;
+
+REVISING THE SELECT QUERY.
+SELECT * FROM CITY 
+WHERE 
+  COUNTRYCODE='USA'
+  AND POPULATION>100000;
+
+
+
+SELECT NAME
+FROM CITY
+WHERE
+    COUNTRYCODE = 'USA'
+    AND POPULATION > 120000;
+
+#SELECT BY ID
+SELECT * FROM CITY WHERE ID='1661';
+
+#JAPANESE-CITIES-NAME
+SELECT NAME FROM CITY WHERE COUNTRYCODE='JPN';
+
+#JAPANESE-CITIES-ATTRIBUTES
+SELECT * FROM CITY WHERE COUNTRYCODE='JPN';
+
+#WEATHER-OBSERVATION-STATION-1
+SELECT CITY,STATE FROM STATION;
+
+#WEATHER-OBSERVATION-STATION-3
+SELECT DISTINCT(CITY) FROM STATION WHERE mod(ID,2) = 0;
+
+#WEATHER-OBSERVATION-STATION-4
+SELECT (COUNT(*) - COUNT(DISTINCT CITY)) FROM STATION
+
+#WEATHER-OBSERVATION-STATION-5
+from   station
+order by l desc, c asc
+limit 1;
+select city c, length(city) l
+from   station
+order by l asc, c asc
+limit 1;
+
+#ALPHABETICAL ORDER NAME
+SELECT NAME FROM EMPLOYEE ORDER BY NAME;
+
+#WEATHER-OBSERVATION-STATION-6
+select city from station where REGEXP_LIKE(city,'^[aeiou]');
+
+#WEATHER-OBSERVATION-STATION-7
+SELECT DISTINCT CITY
+FROM STATION
+WHERE REGEXP_LIKE(CITY, '[aeiou]$', 'i');
+
+#WEATHER-OBSERVATION-STATION-7
+select distinct city from station
+where (city like 'a%'
+or city like 'e%'
+or city like 'i%'
+or city like 'o%'
+or city like 'u%')
+and
+(
+city like '%a'
+or city like '%e'
+or city like '%i'
+or city like '%o'
+or city like '%u'
+)
+
+#or
+
+SELECT DISTINCT CITY
+FROM STATION 
+WHERE REGEXP_LIKE(UPPER(CITY), '^[AEIOU]+(.)+[AEIOU]$');
+
+9.
+select distinct city from station
+where not (city like 'a%'
+or city like 'e%'
+or city like 'i%'
+or city like 'o%'
+or city like 'u%')
+
+10.
+SELECT DISTINCT CITY FROM STATION
+ WHERE NOT(CITY LIKE '%a' OR CITY LIKE '%e' or city like '%i' or city like '%o' or city like '%u')
+
+11.
+
