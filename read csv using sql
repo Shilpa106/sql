@@ -1,0 +1,22 @@
+load data local infile "/home/baliram/Documents/csv/userdetail.csv" into table UserRecord
+fields terminated by ','
+enclosed by '"'  # if error occur then delete this line
+lines terminated by '\n'
+ignore 1 rows;
+
+CREATE TABLE UserRecord ( 
+    Username varchar(55),
+    email varchar(50),
+    Identifier int,
+    FirstName varchar(55),
+    LastName varchar(55),
+    Address varchar(55)    
+);
+
+BULK INSERT UserRecord
+FROM "/home/baliram/Documents/csv/userdetail.csv"
+WITH (FORMAT -'CSV'
+      ,FIRSTROW-2
+      ,FIELDTERMINATOR-','
+      ,ROWTERMINATOR-'0x0a');
+

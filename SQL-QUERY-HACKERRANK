@@ -173,5 +173,37 @@ SELECT CITY.NAME FROM CITY INNER JOIN COUNTRY WHERE CITY.COUNTRYCODE=COUNTRY.COD
 #AVERAGE POPULATION OF EACH CONTINENT
 SELECT COUNTRY.CONTINENT, FLOOR(AVG(CITY.POPULATION)) FROM COUNTRY INNER JOIN CITY ON CITY.COUNTRYCODE=COUNTRY.CODE group by country.continent;
 
+************************************************
+#advanced select
+select Round(ABS(MIN(LAT_N) - MAX(LAT_N)) + ABS(MIN(LONG_W) - MAX(LONG_W)),4)
+FROM STATION;
+
+#Occupations
+select
+    Doctor,
+    Professor,
+    Singer,
+    Actor
+from (
+    select
+        NameOrder,
+        max(case Occupation when 'Doctor' then Name end) as Doctor,
+        max(case Occupation when 'Professor' then Name end) as Professor,
+        max(case Occupation when 'Singer' then Name end) as Singer,
+        max(case Occupation when 'Actor' then Name end) as Actor
+    from (
+            select
+                Occupation,
+                Name,
+                row_number() over(partition by Occupation order by Name ASC) as NameOrder
+            from Occupations
+         ) as NameLists
+    group by NameOrder
+    ) as Names
+
+
+*********************************************************************
+
+
 
 

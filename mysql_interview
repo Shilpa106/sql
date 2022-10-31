@@ -1,0 +1,284 @@
+advantages of MySQL:
+Flexibility:MySQL runs on all OS
+Power: focuses on performance
+Enterprise-Level SQL Features: MySQL had for some time been lacking in advanced features such as
+subqueries, views and stored procedures.
+Full Text Indexing and Searching.
+Query Caching:This helps enhance the speed of MySQL greatly
+Replication:One MySQL server can be duplicated on another, providing numerous advantages.
+Configuration and Security.
+
+How do you create a database in MySQL?
+CREATE DATABASE company;
+
+how do you create a table using MySQL?
+CREATE TABLE AUTHOR(author VARCHAR(128),
+TITLE VARCHAR(128),
+TYPE VARCHAR(16),
+YEAR CHAR(4)
+)ENGINE InnoDB;
+
+5.How do you insert data into MySQL?
+INSERT INTO table_name(column1, column2, column3,....)VALUES(value1,
+value2, value3, ...)
+
+or 
+
+INSERT INTO table_name VALUES (value1, value2, value3,...)
+
+
+MySQL Server's standard port?
+3306
+sql server:1433
+
+How does mysql construct an index?
+ALTER TABLE history ADD INDEX(size(10));
+ALTER TABLE history ADD INDEX(title(10));
+ALTER TABLE history ADD INDEX(price(5));
+
+What kinds of tables are there in MySQL?
+Numerous tables are always present by default.However, MySQL's default
+database engine is MyISAM.
+There are now 5 diff kinds of tables.
+MYISAM
+Heap
+Merge
+INNO DB
+ISAM
+
+9.How can users be added in MySQL?
+By executing the CREATE command and providing the required information you
+can add a user.
+
+CREATE USER 'newuser' IDENTIFIED BY 'Your Password';
+
+10.How can I access a MySQL database?
+there are primarily 2 ways that MySQL enables us to connect to the database server.
+The bin directory of the MySQL installation folder contains the command line client
+utility. To run this software, use the following command in the bin directory of the
+installation folder.
+mysql
+to connect to the mysql server, we do
+shell>mysql -u root -p
+Finally, key in the root user account password and hit Enter.
+Enter password:*************
+
+using the command below after a successful connection, we can use the
+USE database_name;
+
+11.Distinguish between CHAR and VARCHAR?
+CHAR is used to provide the fixed length of the table and columns when a table is 
+constructed. The length value may fall between 1-255. the column and table
+lengths can be changed as needed by using the VARCHAR command.
+
+
+12. how can a table in MySQL be updated?
+UPDATE table_name SET field1=new-value1, field2=new-value2, ....[Where Clause]
+
+13.how to create a Trigger in MySQL?
+When specific events on a specific table or view in the database take place, a trigger
+is a procedural piece of code in the database that automatically runs. It can be run whenever records 
+are added to a table or whenever any columns are modified.
+Referential integrity rules and entity intigrity rules are the two categories of integrity rules.
+
+CREATE TRIGGER trigger_name 
+  [before | after]
+  {insert | update | delete}
+   ON table_name [FOR EACH ROW]
+  BEGIN
+    --variable declarations
+    --trigger code
+  END
+
+14.How can I determine MySQL's second highest salary?
+
+SELECT SALARY FROM (SELECT SALARY FROM EMPLOYEES ORDER BY SALARY DESC LIMIT 2)AS Emp ORDER
+BY SALARY LIMIT 1.
+
+15.How can i modify the MySQL database name?
+mysqldump -u username -p "password" -R oldDbName>oldDbName.sql
+
+to import the data into the just formed database, run the command below.
+
+mysql -u username -p "password" newDbName<oldDbName.sql
+
+
+16.How can the MySQL Primary key be deleted?
+ALTER TABLE table_name DROP PRIMARY KEY;
+
+17.In MySQL , how do you construct a stored procedure?
+A collection of SQL command is called a stored procedure and is stored in the database. the stored procedure
+can contain SQL queries like INSERT, UPDATE, DELETE and others. by executing a single statement, a procudure
+allows us to repeat the same code. save the data dictionary in the database.
+
+CREATE PROCEDURE procedure_name [(parameter datatype[,parameter datatype])]
+BEGIN 
+  Body_section of SQL statements
+END;
+
+18. What the MySQL GRANT command does?
+A newly set up MySQL user needs specific credentials to perform various actions in the database.
+The GRANT command provides specific capability to the user.
+authorizes username@localhost to perform SELECT and INSERT operations on the customer table.
+
+19.what are the common MySQL functions?
+NOWO: the function for returning the current date and time as a single value
+CURRDATEO: the function for returning the current date or time.
+DATEDIFF(X,Y): determine difference between two dates.
+CONCAT(x,y):concatenate two string value creating a single string output.
+
+
+20.get the current SQL version?
+SELECT VERSION();
+
+21.Difference between primary key and unique key?
+
+while both are used to enforce the uniqueness of the defined column,the primary key would
+create a clustered index while the unique key would create a nonclustered index on the column
+The primary key doesn't allow 'NULL' but the unique key does.
+
+22. difference between primary key and the candidate key?
+The primary key in MYSql is used to uniquely identify each row in a table. there is only 
+one primary key for a table. Candidate keys can be used to reference foreign keys. One of the
+candidate keys is the master key.
+
+23. What are different types of tables in mysql?
+MyISAM is the default table that is based on the sequential access method.
+Heap is the table that is used for fast data access, but the data will be lost if the table or the system crashes.
+InnoDB is the table that supports transactions using the COMMIT and ROLLBACK commands.
+BDB can support transactions similar to InnoDB, but the execution is slower.
+
+
+24.What is the use of ENUM in mysql?
+the use of ENUM limits the values that can be included in a table. 
+ex. a user can create a table with specific monthly values and other monthly values would not be
+included in the table.
+
+25.difference between LIKE and REGEXP operators in MYSQL?
+LIKE is denoted using the '%' sign.
+ex.
+SELECT * FROM user WHERE user name LIKE "%NAME"
+
+on the other hand, the use of REGEXP is as follows.
+SELECT * FROM user WHERE username REGEXP "^NAME";
+
+
+26.HOW can you change the root password if it is lost?
+in such cases when the password is lost, the user should sart the DB with skip-grants-table
+and then change the password. Thereafter, with the new password, the user should restart the DB
+in a normal mode.
+
+27.types of joins in MySQL?
+4 TYPE OF JOINS:
+The inner join returns the rows if there is at least one match in two tables.
+The left join returns all rows from the left table even if there is no match in the right table
+The right join returns all rows from the right table even if there are no matches in the left table.
+The full join would return rows if there is at least one match in the tables.
+
+28. what is the difference between BLOB and TEXT?
+BLOBs are binary large objects holding huge data.
+4 types of BLOBs are TINYBLOB,BLOB,MEDIBLOB, and LONGBLOB.
+TEXT is a case sensitive BLOB.
+4 TYPES of TEXT are TINY TEXT, TEXT, MEDIUMTEXT, AND LONG TEXT.
+ 
+
+
+29. Write and 	sql query to report the movies with an odd-numbered ID AND a description that is 
+not 'boring'
+return the result table ordered by rating in descending order.
+ 
+SELECT ID, MOVIE, DESCRIPTION, RATING 
+FROM CINEMA
+WHERE ID%2==1 AND DESCRIPTION<>'BORING'
+ORDER BY RATING DESC;
+
+2ND APPROACH
+SELECT ID, MOVIE, DESCRIPTION, RATING
+FROM CINEMA
+WHERE MOD(ID,2)=1 AND DESCRIPTION NOT LIKE "%BORING%"
+ORDER BY RATING DESC;
+
+
+SWAP SALARY:
+UPDATE SALARY 
+SET SEX=
+CASE
+  WHEN sex="m" THEN "f"
+  WHEN sex="f" THEN "m"
+END;
+
+APPROACH 2
+
+UPDATE SALARY
+SET SEX=IF(SEX="M","F","M");
+
+Write a sql query for a report that provides the pairs (actor_id, director_id) where the actor 
+has cooperated with the director at least three times
+
+SELECT ACTOR_ID,DIRECTOR_ID 
+FROM ACTORDIRECTOR
+GROUPBY ACTOR_ID, DIRECTOR_ID
+HAVING COUNT(TIMESTAMP)>=3;
+
+2ND APPROACH
+
+SELECT ACTOR_ID, DIRECTOR_ID
+FROM ACTORDIRECTOR
+GROUP BY ACTOR_ID, DIRECTOR_ID
+HAVING COUNT(ACTOR_ID)>2 AND COUNT(DIRECTOR_ID)>2;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
